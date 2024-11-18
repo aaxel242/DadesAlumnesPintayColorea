@@ -33,6 +33,10 @@ namespace Dades_Alumnes_Joc_Pintar
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelJSON = new System.Windows.Forms.DataGridView();
             this.lblDadesAlumnes = new System.Windows.Forms.Label();
             this.btnObrirArxiu = new System.Windows.Forms.Button();
@@ -41,8 +45,13 @@ namespace Dades_Alumnes_Joc_Pintar
             this.btnEliminarFila = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.pBoxDadesAlumnes = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pBoxAfegir = new System.Windows.Forms.PictureBox();
+            this.btnEditarArxiu = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.panelJSON)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBoxDadesAlumnes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBoxAfegir)).BeginInit();
             this.SuspendLayout();
             // 
             // panelJSON
@@ -51,27 +60,66 @@ namespace Dades_Alumnes_Joc_Pintar
             this.panelJSON.AllowUserToAddRows = false;
             this.panelJSON.AllowUserToDeleteRows = false;
             this.panelJSON.BackgroundColor = System.Drawing.SystemColors.Info;
+            this.panelJSON.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Malgun Gothic", 11.25F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.panelJSON.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.panelJSON.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.panelJSON.Location = new System.Drawing.Point(39, 132);
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Malgun Gothic", 11.25F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.panelJSON.DefaultCellStyle = dataGridViewCellStyle2;
+            this.panelJSON.GridColor = System.Drawing.SystemColors.Desktop;
+            this.panelJSON.Location = new System.Drawing.Point(54, 135);
+            this.panelJSON.Margin = new System.Windows.Forms.Padding(2);
             this.panelJSON.Name = "panelJSON";
+            this.panelJSON.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Malgun Gothic", 11.25F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.panelJSON.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.panelJSON.RowHeadersWidth = 51;
-            this.panelJSON.Size = new System.Drawing.Size(1004, 492);
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Malgun Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            this.panelJSON.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.panelJSON.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.SystemColors.Info;
+            this.panelJSON.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Malgun Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panelJSON.Size = new System.Drawing.Size(1021, 400);
             this.panelJSON.TabIndex = 0;
             // 
             // lblDadesAlumnes
             // 
             this.lblDadesAlumnes.AutoSize = true;
-            this.lblDadesAlumnes.Location = new System.Drawing.Point(39, 102);
+            this.lblDadesAlumnes.Location = new System.Drawing.Point(29, 83);
+            this.lblDadesAlumnes.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDadesAlumnes.Name = "lblDadesAlumnes";
-            this.lblDadesAlumnes.Size = new System.Drawing.Size(0, 16);
+            this.lblDadesAlumnes.Size = new System.Drawing.Size(0, 13);
             this.lblDadesAlumnes.TabIndex = 1;
             // 
             // btnObrirArxiu
             // 
             this.btnObrirArxiu.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnObrirArxiu.Location = new System.Drawing.Point(604, 649);
+            this.btnObrirArxiu.FlatAppearance.BorderSize = 2;
+            this.btnObrirArxiu.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnObrirArxiu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnObrirArxiu.Location = new System.Drawing.Point(54, 553);
+            this.btnObrirArxiu.Margin = new System.Windows.Forms.Padding(2);
             this.btnObrirArxiu.Name = "btnObrirArxiu";
-            this.btnObrirArxiu.Size = new System.Drawing.Size(167, 49);
+            this.btnObrirArxiu.Size = new System.Drawing.Size(125, 40);
             this.btnObrirArxiu.TabIndex = 2;
             this.btnObrirArxiu.Text = "Obrir arxiu";
             this.btnObrirArxiu.UseVisualStyleBackColor = false;
@@ -80,9 +128,14 @@ namespace Dades_Alumnes_Joc_Pintar
             // btnSortir
             // 
             this.btnSortir.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnSortir.Location = new System.Drawing.Point(793, 649);
+            this.btnSortir.FlatAppearance.BorderSize = 2;
+            this.btnSortir.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnSortir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnSortir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSortir.Location = new System.Drawing.Point(950, 553);
+            this.btnSortir.Margin = new System.Windows.Forms.Padding(2);
             this.btnSortir.Name = "btnSortir";
-            this.btnSortir.Size = new System.Drawing.Size(167, 49);
+            this.btnSortir.Size = new System.Drawing.Size(125, 40);
             this.btnSortir.TabIndex = 3;
             this.btnSortir.Text = "Sortir";
             this.btnSortir.UseVisualStyleBackColor = false;
@@ -90,51 +143,110 @@ namespace Dades_Alumnes_Joc_Pintar
             // 
             // btnAfegirFila
             // 
-            this.btnAfegirFila.Location = new System.Drawing.Point(42, 649);
+            this.btnAfegirFila.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnAfegirFila.FlatAppearance.BorderSize = 2;
+            this.btnAfegirFila.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnAfegirFila.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAfegirFila.Location = new System.Drawing.Point(523, 553);
+            this.btnAfegirFila.Margin = new System.Windows.Forms.Padding(2);
             this.btnAfegirFila.Name = "btnAfegirFila";
-            this.btnAfegirFila.Size = new System.Drawing.Size(167, 49);
+            this.btnAfegirFila.Size = new System.Drawing.Size(125, 40);
             this.btnAfegirFila.TabIndex = 4;
             this.btnAfegirFila.Text = "Afegir Fila";
-            this.btnAfegirFila.UseVisualStyleBackColor = true;
+            this.btnAfegirFila.UseVisualStyleBackColor = false;
+            this.btnAfegirFila.Visible = false;
             this.btnAfegirFila.Click += new System.EventHandler(this.btnAfegirFila_Click_1);
             // 
             // btnEliminarFila
             // 
-            this.btnEliminarFila.Location = new System.Drawing.Point(230, 649);
+            this.btnEliminarFila.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnEliminarFila.FlatAppearance.BorderSize = 2;
+            this.btnEliminarFila.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnEliminarFila.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEliminarFila.Location = new System.Drawing.Point(667, 553);
+            this.btnEliminarFila.Margin = new System.Windows.Forms.Padding(2);
             this.btnEliminarFila.Name = "btnEliminarFila";
-            this.btnEliminarFila.Size = new System.Drawing.Size(167, 49);
+            this.btnEliminarFila.Size = new System.Drawing.Size(125, 40);
             this.btnEliminarFila.TabIndex = 5;
             this.btnEliminarFila.Text = "Eliminar Fila";
-            this.btnEliminarFila.UseVisualStyleBackColor = true;
+            this.btnEliminarFila.UseVisualStyleBackColor = false;
+            this.btnEliminarFila.Visible = false;
             this.btnEliminarFila.Click += new System.EventHandler(this.btnEliminarFila_Click_1);
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(418, 649);
+            this.btnGuardar.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnGuardar.FlatAppearance.BorderSize = 2;
+            this.btnGuardar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnGuardar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGuardar.Location = new System.Drawing.Point(809, 553);
+            this.btnGuardar.Margin = new System.Windows.Forms.Padding(2);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(167, 49);
+            this.btnGuardar.Size = new System.Drawing.Size(125, 40);
             this.btnGuardar.TabIndex = 8;
             this.btnGuardar.Text = "Guardar";
-            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.UseVisualStyleBackColor = false;
+            this.btnGuardar.Visible = false;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click_1);
             // 
             // pBoxDadesAlumnes
             // 
             this.pBoxDadesAlumnes.BackColor = System.Drawing.Color.Transparent;
             this.pBoxDadesAlumnes.Image = global::DadesAlumnesPintayColorea.Properties.Resources.Dades_Alumnes;
-            this.pBoxDadesAlumnes.Location = new System.Drawing.Point(39, 80);
+            this.pBoxDadesAlumnes.Location = new System.Drawing.Point(29, 23);
+            this.pBoxDadesAlumnes.Margin = new System.Windows.Forms.Padding(2);
             this.pBoxDadesAlumnes.Name = "pBoxDadesAlumnes";
-            this.pBoxDadesAlumnes.Size = new System.Drawing.Size(440, 38);
+            this.pBoxDadesAlumnes.Size = new System.Drawing.Size(330, 31);
             this.pBoxDadesAlumnes.TabIndex = 9;
             this.pBoxDadesAlumnes.TabStop = false;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Image = global::DadesAlumnesPintayColorea.Properties.Resources.imgTablon3;
+            this.pictureBox1.Location = new System.Drawing.Point(-10, 59);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(1146, 641);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 10;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pBoxAfegir
+            // 
+            this.pBoxAfegir.BackColor = System.Drawing.SystemColors.Info;
+            this.pBoxAfegir.Image = global::DadesAlumnesPintayColorea.Properties.Resources.imgAfegir1;
+            this.pBoxAfegir.Location = new System.Drawing.Point(83, 166);
+            this.pBoxAfegir.Name = "pBoxAfegir";
+            this.pBoxAfegir.Size = new System.Drawing.Size(293, 343);
+            this.pBoxAfegir.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pBoxAfegir.TabIndex = 11;
+            this.pBoxAfegir.TabStop = false;
+            // 
+            // btnEditarArxiu
+            // 
+            this.btnEditarArxiu.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnEditarArxiu.FlatAppearance.BorderSize = 2;
+            this.btnEditarArxiu.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnEditarArxiu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditarArxiu.Location = new System.Drawing.Point(195, 553);
+            this.btnEditarArxiu.Margin = new System.Windows.Forms.Padding(2);
+            this.btnEditarArxiu.Name = "btnEditarArxiu";
+            this.btnEditarArxiu.Size = new System.Drawing.Size(125, 40);
+            this.btnEditarArxiu.TabIndex = 12;
+            this.btnEditarArxiu.Text = "Editar Arxiu";
+            this.btnEditarArxiu.UseVisualStyleBackColor = false;
+            this.btnEditarArxiu.Click += new System.EventHandler(this.btnEditarArxiu_Click);
+            // 
             // formJocPintar
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::DadesAlumnesPintayColorea.Properties.Resources.fondo1;
+            this.BackgroundImage = global::DadesAlumnesPintayColorea.Properties.Resources.imgPaisajeFondo;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1078, 728);
+            this.ClientSize = new System.Drawing.Size(1186, 715);
+            this.Controls.Add(this.btnEditarArxiu);
+            this.Controls.Add(this.pBoxAfegir);
             this.Controls.Add(this.pBoxDadesAlumnes);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.btnEliminarFila);
@@ -143,11 +255,16 @@ namespace Dades_Alumnes_Joc_Pintar
             this.Controls.Add(this.btnObrirArxiu);
             this.Controls.Add(this.lblDadesAlumnes);
             this.Controls.Add(this.panelJSON);
+            this.Controls.Add(this.pictureBox1);
             this.DoubleBuffered = true;
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "formJocPintar";
-            this.Text = "Form1";
+            this.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Text = "Dades Alumnes";
             ((System.ComponentModel.ISupportInitialize)(this.panelJSON)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBoxDadesAlumnes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBoxAfegir)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -170,5 +287,8 @@ namespace Dades_Alumnes_Joc_Pintar
         private Button btnEliminarFila;
         private Button btnGuardar;
         private PictureBox pBoxDadesAlumnes;
+        private PictureBox pictureBox1;
+        private PictureBox pBoxAfegir;
+        private Button btnEditarArxiu;
     }
 }

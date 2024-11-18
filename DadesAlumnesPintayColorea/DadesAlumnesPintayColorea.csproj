@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -55,10 +55,19 @@
     <Compile Include="DadesPintaiColoreja.Designer.cs">
       <DependentUpon>DadesPintaiColoreja.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditarArxiu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditarArxiu.Designer.cs">
+      <DependentUpon>EditarArxiu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="DadesPintaiColoreja.resx">
       <DependentUpon>DadesPintaiColoreja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditarArxiu.resx">
+      <DependentUpon>EditarArxiu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -89,6 +98,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Dades Alumnes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\madera.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\imgPaisajeFondo1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\imgTablonRedondo21.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\imgTablon2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\imgTablon3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\imgAfegir1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

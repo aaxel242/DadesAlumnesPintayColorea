@@ -1,58 +1,31 @@
 using System;
 using System.Data;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using DadesAlumnesPintayColorea;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-
 
 namespace Dades_Alumnes_Joc_Pintar
 {
     public partial class formJocPintar : Form
-
     {
         private PictureBox pictureBox;
         private string filePath;
         private bool mostrarImagen = true;
 
-
         public formJocPintar()
         {
             InitializeComponent();
-
-        }
-
-        private void btnAfegirFila_Click(object sender, EventArgs e)
-        {
-         
-        }
-
-        private void btnEliminarFila_Click(object sender, EventArgs e)
-        {
-          
-        }
-
-
-        private void btnGuardar_Click(object sender, EventArgs e)
-        {
-        
-        }
-
-        private void btnObrirArxiu_Click(object sender, EventArgs e)
-        {
-           
-        }
-
-
-        private void btnSortir_Click(object sender, EventArgs e)
-        {
+            
         }
 
         private void btnAfegirFila_Click_1(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(filePath))
             {
-                MessageBox.Show("Siusplau, obre un arxiu.");
+                MessageBox.Show(this, "Siusplau, obre un arxiu.", "Missatge", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -64,7 +37,7 @@ namespace Dades_Alumnes_Joc_Pintar
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al afegir una fila: " + ex.Message);
+                MessageBox.Show(this, "Error al afegir una fila: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -72,7 +45,7 @@ namespace Dades_Alumnes_Joc_Pintar
         {
             if (panelJSON.DataSource == null)
             {
-                MessageBox.Show("Siusplau, obre un arxiu.");
+                MessageBox.Show(this, "Siusplau, obre un arxiu.", "Missatge", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -92,16 +65,15 @@ namespace Dades_Alumnes_Joc_Pintar
 
                     panelJSON.DataSource = null;
                     panelJSON.DataSource = dataTable;
-
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error al eliminar. " + ex.Message);
+                    MessageBox.Show(this, "Error al eliminar. " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
-                MessageBox.Show("Selecciona una fila.");
+                MessageBox.Show(this, "Selecciona una fila.", "Missatge", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -109,7 +81,7 @@ namespace Dades_Alumnes_Joc_Pintar
         {
             if (string.IsNullOrEmpty(filePath))
             {
-                MessageBox.Show("Siusplau, obre un arxiu.");
+                MessageBox.Show(this, "Siusplau, obre un arxiu.", "Missatge", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -134,25 +106,30 @@ namespace Dades_Alumnes_Joc_Pintar
 
                 File.WriteAllText(filePath, archivoAJSON);
 
-                MessageBox.Show("L'arxiu s'ha guardat correctament.");
+                MessageBox.Show(this, "L'arxiu s'ha guardat correctament.", "Informació", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al guardar l'arxiu: " + ex.Message);
+                MessageBox.Show(this, "Error al guardar l'arxiu: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void btnObrirArxiu_Click_1(object sender, EventArgs e)
         {
+            pBoxAfegir.Enabled = true;
+            pBoxAfegir.Visible = true;
+           
             if (panelJSON.DataSource != null)
             {
                 ((DataTable)panelJSON.DataSource).Clear();
                 panelJSON.DataSource = null;
             }
 
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Archivos JSON (*.json)|*.json";
-            openFileDialog.Title = "Selecciona l'arxiu";
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "Archivos JSON (*.json)|*.json",
+                Title = "Selecciona l'arxiu"
+            };
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -164,7 +141,6 @@ namespace Dades_Alumnes_Joc_Pintar
                     JArray jsonArray = JArray.Parse(fileJson);
                     DataTable dataTable = new DataTable();
 
-                    // Adding columns dynamically
                     foreach (JObject obj in jsonArray)
                     {
                         foreach (JProperty property in obj.Properties())
@@ -176,7 +152,6 @@ namespace Dades_Alumnes_Joc_Pintar
                         }
                     }
 
-                    // Adding rows to the DataTable
                     foreach (JObject obj in jsonArray)
                     {
                         DataRow row = dataTable.NewRow();
@@ -188,18 +163,26 @@ namespace Dades_Alumnes_Joc_Pintar
                     }
 
                     panelJSON.DataSource = dataTable;
+                    pBoxAfegir.Enabled = false;
+                    pBoxAfegir.Visible = false;
+
+                    btnAfegirFila.Visible = true;
+                    btnEliminarFila.Visible = true;
+                    btnGuardar.Visible = true;
+
+
                 }
                 catch (JsonReaderException jsonEx)
                 {
-                    MessageBox.Show("Error al parsear el archivo JSON: " + jsonEx.Message);
+                    MessageBox.Show(this, "Error al parsear el archivo JSON: " + jsonEx.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 catch (IOException ioEx)
                 {
-                    MessageBox.Show("Error de entrada/salida: " + ioEx.Message);
+                    MessageBox.Show(this, "Error de entrada/salida: " + ioEx.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error al cargar el archivo: " + ex.Message);
+                    MessageBox.Show(this, "Error al cargar el archivo: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -207,24 +190,13 @@ namespace Dades_Alumnes_Joc_Pintar
         private void btnSortir_Click_1(object sender, EventArgs e)
         {
             Close();
-
         }
 
-        
-
-
-
-
-
-
-        // private void panelJSON_Paint(object sender, PaintEventArgs e)
-        //{
-        //   if (mostrarImagen && Properties.Resources.imgAfegir != null)
-        //  {
-        //     e.Graphics.DrawImage(Properties.Resources.imgAfegir, new Point(100, 10));
-        //}
-        //        }
-
+        private void btnEditarArxiu_Click(object sender, EventArgs e)
+        {
+             formEditarArxiu editarArxiu = new formEditarArxiu();
+             editarArxiu.ShowDialog();
+        }
 
     }
 }
