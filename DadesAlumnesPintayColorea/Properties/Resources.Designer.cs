@@ -123,6 +123,16 @@ namespace DadesAlumnesPintayColorea.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap imgTablonVertical {
+            get {
+                object obj = ResourceManager.GetObject("imgTablonVertical", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap madera {
             get {
                 object obj = ResourceManager.GetObject("madera", resourceCulture);

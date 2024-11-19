@@ -33,10 +33,10 @@ namespace Dades_Alumnes_Joc_Pintar
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelJSON = new System.Windows.Forms.DataGridView();
             this.lblDadesAlumnes = new System.Windows.Forms.Label();
             this.btnObrirArxiu = new System.Windows.Forms.Button();
@@ -48,10 +48,12 @@ namespace Dades_Alumnes_Joc_Pintar
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pBoxAfegir = new System.Windows.Forms.PictureBox();
             this.btnEditarArxiu = new System.Windows.Forms.Button();
+            this.pBoxEditarArxiu = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.panelJSON)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBoxDadesAlumnes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBoxAfegir)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBoxEditarArxiu)).BeginInit();
             this.SuspendLayout();
             // 
             // panelJSON
@@ -61,41 +63,41 @@ namespace Dades_Alumnes_Joc_Pintar
             this.panelJSON.AllowUserToDeleteRows = false;
             this.panelJSON.BackgroundColor = System.Drawing.SystemColors.Info;
             this.panelJSON.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Malgun Gothic", 11.25F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.panelJSON.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle21.Font = new System.Drawing.Font("Malgun Gothic", 11.25F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.panelJSON.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle21;
             this.panelJSON.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Malgun Gothic", 11.25F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.panelJSON.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle22.Font = new System.Drawing.Font("Malgun Gothic", 11.25F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.panelJSON.DefaultCellStyle = dataGridViewCellStyle22;
             this.panelJSON.GridColor = System.Drawing.SystemColors.Desktop;
             this.panelJSON.Location = new System.Drawing.Point(54, 135);
             this.panelJSON.Margin = new System.Windows.Forms.Padding(2);
             this.panelJSON.Name = "panelJSON";
             this.panelJSON.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Malgun Gothic", 11.25F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.panelJSON.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("Malgun Gothic", 11.25F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.panelJSON.RowHeadersDefaultCellStyle = dataGridViewCellStyle23;
             this.panelJSON.RowHeadersWidth = 51;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Malgun Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            this.panelJSON.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("Malgun Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle24.ForeColor = System.Drawing.Color.Black;
+            this.panelJSON.RowsDefaultCellStyle = dataGridViewCellStyle24;
             this.panelJSON.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.SystemColors.Info;
             this.panelJSON.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Malgun Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panelJSON.Size = new System.Drawing.Size(1021, 400);
@@ -236,7 +238,20 @@ namespace Dades_Alumnes_Joc_Pintar
             this.btnEditarArxiu.TabIndex = 12;
             this.btnEditarArxiu.Text = "Editar Arxiu";
             this.btnEditarArxiu.UseVisualStyleBackColor = false;
+            this.btnEditarArxiu.Visible = false;
             this.btnEditarArxiu.Click += new System.EventHandler(this.btnEditarArxiu_Click);
+            // 
+            // pBoxEditarArxiu
+            // 
+            this.pBoxEditarArxiu.BackColor = System.Drawing.Color.Transparent;
+            this.pBoxEditarArxiu.Image = global::DadesAlumnesPintayColorea.Properties.Resources.imgTablonVertical;
+            this.pBoxEditarArxiu.Location = new System.Drawing.Point(1188, 59);
+            this.pBoxEditarArxiu.Name = "pBoxEditarArxiu";
+            this.pBoxEditarArxiu.Size = new System.Drawing.Size(714, 930);
+            this.pBoxEditarArxiu.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pBoxEditarArxiu.TabIndex = 13;
+            this.pBoxEditarArxiu.TabStop = false;
+            this.pBoxEditarArxiu.Visible = false;
             // 
             // formJocPintar
             // 
@@ -244,7 +259,8 @@ namespace Dades_Alumnes_Joc_Pintar
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::DadesAlumnesPintayColorea.Properties.Resources.imgPaisajeFondo;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1186, 715);
+            this.ClientSize = new System.Drawing.Size(1924, 1046);
+            this.Controls.Add(this.pBoxEditarArxiu);
             this.Controls.Add(this.btnEditarArxiu);
             this.Controls.Add(this.pBoxAfegir);
             this.Controls.Add(this.pBoxDadesAlumnes);
@@ -265,6 +281,7 @@ namespace Dades_Alumnes_Joc_Pintar
             ((System.ComponentModel.ISupportInitialize)(this.pBoxDadesAlumnes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBoxAfegir)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBoxEditarArxiu)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -290,5 +307,6 @@ namespace Dades_Alumnes_Joc_Pintar
         private PictureBox pictureBox1;
         private PictureBox pBoxAfegir;
         private Button btnEditarArxiu;
+        private PictureBox pBoxEditarArxiu;
     }
 }

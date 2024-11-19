@@ -14,11 +14,14 @@ namespace Dades_Alumnes_Joc_Pintar
         private PictureBox pictureBox;
         private string filePath;
         private bool mostrarImagen = true;
+        private string nomArxiu;
 
         public formJocPintar()
+
         {
             InitializeComponent();
-            
+
+
         }
 
         private void btnAfegirFila_Click_1(object sender, EventArgs e)
@@ -133,7 +136,10 @@ namespace Dades_Alumnes_Joc_Pintar
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                filePath = openFileDialog.FileName;
+
+                filePath = openFileDialog.FileName; 
+                string fileName = Path.GetFileName(filePath);
+
 
                 try
                 {
@@ -169,6 +175,9 @@ namespace Dades_Alumnes_Joc_Pintar
                     btnAfegirFila.Visible = true;
                     btnEliminarFila.Visible = true;
                     btnGuardar.Visible = true;
+                    btnEditarArxiu.Visible = true;
+
+                    nomArxiu = Path.GetFileName(fileName);
 
 
                 }
@@ -194,9 +203,11 @@ namespace Dades_Alumnes_Joc_Pintar
 
         private void btnEditarArxiu_Click(object sender, EventArgs e)
         {
-             formEditarArxiu editarArxiu = new formEditarArxiu();
-             editarArxiu.ShowDialog();
+
+            pBoxEditarArxiu.Visible = true;
+            
         }
 
+       
     }
 }

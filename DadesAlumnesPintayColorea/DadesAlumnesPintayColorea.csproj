@@ -55,19 +55,10 @@
     <Compile Include="DadesPintaiColoreja.Designer.cs">
       <DependentUpon>DadesPintaiColoreja.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditarArxiu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="EditarArxiu.Designer.cs">
-      <DependentUpon>EditarArxiu.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="DadesPintaiColoreja.resx">
       <DependentUpon>DadesPintaiColoreja.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="EditarArxiu.resx">
-      <DependentUpon>EditarArxiu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -116,6 +107,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\imgAfegir1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\imgTablonVertical.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
