@@ -3,7 +3,6 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using DadesAlumnesPintayColorea;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -17,11 +16,8 @@ namespace Dades_Alumnes_Joc_Pintar
         private string nomArxiu;
 
         public formJocPintar()
-
         {
             InitializeComponent();
-
-
         }
 
         private void btnAfegirFila_Click_1(object sender, EventArgs e)
@@ -121,7 +117,7 @@ namespace Dades_Alumnes_Joc_Pintar
         {
             pBoxAfegir.Enabled = true;
             pBoxAfegir.Visible = true;
-           
+
             if (panelJSON.DataSource != null)
             {
                 ((DataTable)panelJSON.DataSource).Clear();
@@ -136,10 +132,8 @@ namespace Dades_Alumnes_Joc_Pintar
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-
-                filePath = openFileDialog.FileName; 
-                string fileName = Path.GetFileName(filePath);
-
+                filePath = openFileDialog.FileName;
+                nomArxiu = Path.GetFileNameWithoutExtension(filePath); 
 
                 try
                 {
@@ -169,17 +163,30 @@ namespace Dades_Alumnes_Joc_Pintar
                     }
 
                     panelJSON.DataSource = dataTable;
+
+                    panelJSON.DefaultCellStyle.Font = new Font("Tahoma", 10, FontStyle.Regular); 
+                    panelJSON.DefaultCellStyle.ForeColor = Color.Black; 
+
                     pBoxAfegir.Enabled = false;
                     pBoxAfegir.Visible = false;
+                    pBoxEditarArxiu.Visible = false;
 
                     btnAfegirFila.Visible = true;
                     btnEliminarFila.Visible = true;
                     btnGuardar.Visible = true;
                     btnEditarArxiu.Visible = true;
 
-                    nomArxiu = Path.GetFileName(fileName);
-
-
+                    if (!string.IsNullOrEmpty(nomArxiu))
+                    {
+                        lblNomArxiu.Text = $"{nomArxiu}";
+                        lblNomArxiu.Font = new Font("Tahoma", 18, FontStyle.Regular); 
+                        lblNomArxiu.ForeColor = Color.Black; 
+                        lblNomArxiu.Visible = false; 
+                    }
+                    else
+                    {
+                        MessageBox.Show("El nombre del archivo no se pudo obtener.");
+                    }
                 }
                 catch (JsonReaderException jsonEx)
                 {
@@ -196,6 +203,7 @@ namespace Dades_Alumnes_Joc_Pintar
             }
         }
 
+
         private void btnSortir_Click_1(object sender, EventArgs e)
         {
             Close();
@@ -203,11 +211,9 @@ namespace Dades_Alumnes_Joc_Pintar
 
         private void btnEditarArxiu_Click(object sender, EventArgs e)
         {
-
+            lblNomArxiu.Visible = true;
+            txtBoxEditarNomArxiu.Visible = true;
             pBoxEditarArxiu.Visible = true;
-            
         }
-
-       
     }
 }
