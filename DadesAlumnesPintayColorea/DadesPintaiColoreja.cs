@@ -14,6 +14,7 @@ namespace Dades_Alumnes_Joc_Pintar
         private string filePath;
         private bool mostrarImagen = true;
         private string nomArxiu;
+        private string nouNomArxiu;
 
         public formJocPintar()
         {
@@ -213,7 +214,53 @@ namespace Dades_Alumnes_Joc_Pintar
         {
             lblNomArxiu.Visible = true;
             txtBoxEditarNomArxiu.Visible = true;
+            pBoxTituloEditarArxiu.Visible = true;
+            btnConfirmarNomArxiu.Visible = true;
             pBoxEditarArxiu.Visible = true;
+
+            txtBoxEditarNomArxiu.Text = "Canviar nom d'arxiu";
+            txtBoxEditarNomArxiu.ForeColor = Color.Gray; 
+             
+            txtBoxEditarNomArxiu.Enter += (s, ev) =>
+
+            {
+                if (txtBoxEditarNomArxiu.Text == "Canviar nom d'arxiu")
+                {
+                    txtBoxEditarNomArxiu.Text = "";
+                    txtBoxEditarNomArxiu.ForeColor = Color.Black; 
+                }
+            };
+
+            txtBoxEditarNomArxiu.Leave += (s, ev) =>
+            {
+                if (string.IsNullOrWhiteSpace(txtBoxEditarNomArxiu.Text))
+                {
+                    txtBoxEditarNomArxiu.Text = "Canviar nom d'arxiu";
+                    txtBoxEditarNomArxiu.ForeColor = Color.Black; 
+                }
+            };
+        }
+
+        private void btnConfirmarNomArxiu_Click(object sender, EventArgs e)
+        {
+           
+            cambiarTextLabelNomArxiu();
+        }
+
+        private void cambiarTextLabelNomArxiu()
+        {
+            if (!string.IsNullOrWhiteSpace(txtBoxEditarNomArxiu.Text))
+            {
+                nouNomArxiu = txtBoxEditarNomArxiu.Text;
+                lblNomArxiu.Text = nouNomArxiu;
+                lblNomArxiu.Visible = true;
+                lblNomArxiu.Invalidate();
+                lblNomArxiu.Refresh();
+            }
+            else
+            {
+                MessageBox.Show("El nombre del archivo no puede estar vacío.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }

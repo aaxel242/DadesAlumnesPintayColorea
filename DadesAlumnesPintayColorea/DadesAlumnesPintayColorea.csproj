@@ -111,5 +111,8 @@
   <ItemGroup>
     <None Include="Resources\imgTablonVertical.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Editar arxiu.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
