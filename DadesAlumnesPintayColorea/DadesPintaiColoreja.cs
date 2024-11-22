@@ -166,11 +166,24 @@ namespace Dades_Alumnes_Joc_Pintar
                     panelJSON.DataSource = dataTable;
 
                     panelJSON.DefaultCellStyle.Font = new Font("Tahoma", 10, FontStyle.Regular); 
-                    panelJSON.DefaultCellStyle.ForeColor = Color.Black; 
+                    panelJSON.DefaultCellStyle.ForeColor = Color.Black;
+
+                    panelJSON.ColumnHeadersDefaultCellStyle.BackColor = Color.SeaGreen;
+                    panelJSON.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+                    panelJSON.ColumnHeadersDefaultCellStyle.Font = new Font("Tahoma", 10, FontStyle.Bold);
+                    panelJSON.EnableHeadersVisualStyles = false; 
+
+                    panelJSON.RowHeadersDefaultCellStyle.BackColor = Color.SeaGreen;
+                    panelJSON.RowHeadersDefaultCellStyle.ForeColor = Color.Black;
+                    panelJSON.RowHeadersDefaultCellStyle.Font = new Font("Tahoma", 10, FontStyle.Italic);
 
                     pBoxAfegir.Enabled = false;
                     pBoxAfegir.Visible = false;
+                    lblNomArxiu.Visible = false;
                     pBoxEditarArxiu.Visible = false;
+                    txtBoxEditarNomArxiu.Visible = false;
+                    btnConfirmarNomArxiu.Visible = false;
+                    pBoxTituloEditarArxiu.Visible = false;
 
                     btnAfegirFila.Visible = true;
                     btnEliminarFila.Visible = true;
@@ -235,14 +248,24 @@ namespace Dades_Alumnes_Joc_Pintar
             {
                 if (string.IsNullOrWhiteSpace(txtBoxEditarNomArxiu.Text))
                 {
-                    txtBoxEditarNomArxiu.Text = "Canviar nom d'arxiu";
+                    txtBoxEditarNomArxiu.Text = $"{nomArxiu}";
                     txtBoxEditarNomArxiu.ForeColor = Color.Black; 
                 }
             };
+
+            if (pBoxEditarArxiu.Visible &&
+                pBoxTituloEditarArxiu.Visible &&
+                lblNomArxiu.Visible &&
+                txtBoxEditarNomArxiu.Visible &&
+                btnConfirmarNomArxiu.Visible)
+            {
+                btnEditarArxiu.Enabled = false;
+            }
         }
 
         private void btnConfirmarNomArxiu_Click(object sender, EventArgs e)
         {
+            
            
             cambiarTextLabelNomArxiu();
         }
@@ -256,6 +279,26 @@ namespace Dades_Alumnes_Joc_Pintar
                 lblNomArxiu.Visible = true;
                 lblNomArxiu.Invalidate();
                 lblNomArxiu.Refresh();
+
+                try
+                {
+                    nouNomArxiu = txtBoxEditarNomArxiu.Text.Trim();
+                    string newFilePath = Path.Combine(Path.GetDirectoryName(filePath), $"{nouNomArxiu}.json");
+
+                    if (File.Exists(newFilePath))
+                    {
+                        MessageBox.Show(this, "Ja existeix un arxiu amb aquest nom.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    File.Move(filePath, newFilePath);
+                    filePath = newFilePath;
+                    lblNomArxiu.Text = nouNomArxiu;
+                    MessageBox.Show(this, "Nom de l'arxiu canviat correctament.", "Informació", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch { 
+                
+                }
             }
             else
             {
