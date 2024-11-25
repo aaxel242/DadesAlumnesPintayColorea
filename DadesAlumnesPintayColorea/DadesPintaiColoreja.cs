@@ -134,7 +134,7 @@ namespace Dades_Alumnes_Joc_Pintar
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 filePath = openFileDialog.FileName;
-                nomArxiu = Path.GetFileNameWithoutExtension(filePath); 
+                nomArxiu = Path.GetFileNameWithoutExtension(filePath);
 
                 try
                 {
@@ -165,17 +165,29 @@ namespace Dades_Alumnes_Joc_Pintar
 
                     panelJSON.DataSource = dataTable;
 
-                    panelJSON.DefaultCellStyle.Font = new Font("Tahoma", 10, FontStyle.Regular); 
+                    // Configuraciones de estilo
+                    panelJSON.DefaultCellStyle.Font = new Font("Tahoma", 10, FontStyle.Regular);
                     panelJSON.DefaultCellStyle.ForeColor = Color.Black;
 
                     panelJSON.ColumnHeadersDefaultCellStyle.BackColor = Color.SeaGreen;
                     panelJSON.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
                     panelJSON.ColumnHeadersDefaultCellStyle.Font = new Font("Tahoma", 10, FontStyle.Bold);
-                    panelJSON.EnableHeadersVisualStyles = false; 
+                    panelJSON.EnableHeadersVisualStyles = false;
 
                     panelJSON.RowHeadersDefaultCellStyle.BackColor = Color.SeaGreen;
                     panelJSON.RowHeadersDefaultCellStyle.ForeColor = Color.Black;
                     panelJSON.RowHeadersDefaultCellStyle.Font = new Font("Tahoma", 10, FontStyle.Italic);
+
+                    // Ajustar el tamaño de las columnas y filas
+                    panelJSON.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                    panelJSON.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+
+                    // Opcional: Ajustar automáticamente las celdas cuando el contenido cambie
+                    panelJSON.AutoResizeColumns();
+                    panelJSON.AutoResizeRows();
+
+                    // Configuración de visibilidad de controles
+
 
                     pBoxAfegir.Enabled = false;
                     pBoxAfegir.Visible = false;
@@ -193,9 +205,9 @@ namespace Dades_Alumnes_Joc_Pintar
                     if (!string.IsNullOrEmpty(nomArxiu))
                     {
                         lblNomArxiu.Text = $"{nomArxiu}";
-                        lblNomArxiu.Font = new Font("Tahoma", 18, FontStyle.Regular); 
-                        lblNomArxiu.ForeColor = Color.Black; 
-                        lblNomArxiu.Visible = false; 
+                        lblNomArxiu.Font = new Font("Tahoma", 18, FontStyle.Regular);
+                        lblNomArxiu.ForeColor = Color.Black;
+                        lblNomArxiu.Visible = false;
                     }
                     else
                     {
