@@ -116,6 +116,157 @@ namespace Dades_Alumnes_Joc_Pintar
 
         private void btnObrirArxiu_Click_1(object sender, EventArgs e)
         {
+            obrirArxiu();
+        }
+
+
+        private void btnSortir_Click_1(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void btnEditarArxiu_Click(object sender, EventArgs e)
+        {
+            lblNomArxiu.Visible = true;
+            txtBoxEditarNomArxiu.Visible = true;
+            pBoxTituloEditarArxiu.Visible = true;
+            btnConfirmarNomArxiu.Visible = true;
+            btnEliminarArxiu.Visible = true;
+            pBoxEditarArxiu.Visible = true;
+
+            txtBoxEditarNomArxiu.Text = "Canviar nom d'arxiu";
+            txtBoxEditarNomArxiu.ForeColor = Color.Gray; 
+             
+            txtBoxEditarNomArxiu.Enter += (s, ev) =>
+
+            {
+                if (txtBoxEditarNomArxiu.Text == "Canviar nom d'arxiu")
+                {
+                    txtBoxEditarNomArxiu.Text = "";
+                    txtBoxEditarNomArxiu.ForeColor = Color.Black; 
+                }
+            };
+
+            txtBoxEditarNomArxiu.Leave += (s, ev) =>
+            {
+                if (string.IsNullOrWhiteSpace(txtBoxEditarNomArxiu.Text))
+                {
+                    txtBoxEditarNomArxiu.Text = $"{nomArxiu}";
+                    txtBoxEditarNomArxiu.ForeColor = Color.Black; 
+                }
+            };
+
+            if (pBoxEditarArxiu.Visible &&
+                pBoxTituloEditarArxiu.Visible &&
+                lblNomArxiu.Visible &&
+                txtBoxEditarNomArxiu.Visible &&
+                btnConfirmarNomArxiu.Visible)
+            {
+                btnEditarArxiu.Enabled = false;
+            }
+        }
+
+        private void btnConfirmarNomArxiu_Click(object sender, EventArgs e)
+        {
+            
+           
+            cambiarTextLabelNomArxiu();
+        }
+
+        private void cambiarTextLabelNomArxiu()
+        {
+            if (!string.IsNullOrWhiteSpace(txtBoxEditarNomArxiu.Text))
+            {
+                nouNomArxiu = txtBoxEditarNomArxiu.Text;
+                lblNomArxiu.Text = nouNomArxiu;
+                lblNomArxiu.Visible = true;
+                lblNomArxiu.Invalidate();
+                lblNomArxiu.Refresh();
+
+                try
+                {
+                    nouNomArxiu = txtBoxEditarNomArxiu.Text.Trim();
+                    string newFilePath = Path.Combine(Path.GetDirectoryName(filePath), $"{nouNomArxiu}.json");
+
+                    if (File.Exists(newFilePath))
+                    {
+                        MessageBox.Show(this, "Ja existeix un arxiu amb aquest nom.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    File.Move(filePath, newFilePath);
+                    filePath = newFilePath;
+                    lblNomArxiu.Text = nouNomArxiu;
+                    MessageBox.Show(this, "Nom de l'arxiu canviat correctament.", "Informació", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch { 
+                
+                }
+            }
+            else
+            {
+                MessageBox.Show("El nombre del archivo no puede estar vacío.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void btnEliminarArxiu_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(filePath))
+            {
+                MessageBox.Show(this, "No hi ha cap arxiu per eliminar.", "Missatge", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            DialogResult confirmResult = MessageBox.Show(
+                "Estàs segur que vols eliminar aquest arxiu?",
+                "Confirmació d'eliminació",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (confirmResult == DialogResult.Yes)
+            {
+                try
+                {
+                    File.Delete(filePath);
+                    filePath = null; // Reseteamos el path para indicar que no hay archivo seleccionado.
+
+                    // Opcional: Limpia el DataGridView y ajusta los controles.
+                    if (panelJSON.DataSource != null)
+                    {
+                        ((DataTable)panelJSON.DataSource).Clear();
+                        panelJSON.DataSource = null;
+                    }
+
+                    txtBoxEditarNomArxiu.Text = " ";
+                    lblNomArxiu.Text = " ";
+                    pBoxEditarArxiu.Visible = false;
+                    lblNomArxiu.Visible = false;
+                    txtBoxEditarNomArxiu.Visible = false;
+                    btnEliminarArxiu.Visible = false;
+                    btnConfirmarNomArxiu.Visible = false;
+                    pBoxTituloEditarArxiu.Visible = false;
+                    btnEditarArxiu.Visible = false;
+                    btnAfegirFila.Visible = false;
+                    btnEliminarFila.Visible = false;
+                    btnGuardar.Visible = false;
+
+                    MessageBox.Show(this, "L'arxiu s'ha eliminat correctament.", "Informació", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(this, "Error al eliminar l'arxiu: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void pBoxAfegir_Click(object sender, EventArgs e)
+        {
+            obrirArxiu();
+        }
+
+        private void obrirArxiu()
+        {
             pBoxAfegir.Enabled = true;
             pBoxAfegir.Visible = true;
 
@@ -195,7 +346,10 @@ namespace Dades_Alumnes_Joc_Pintar
                     pBoxEditarArxiu.Visible = false;
                     txtBoxEditarNomArxiu.Visible = false;
                     btnConfirmarNomArxiu.Visible = false;
+                    btnEliminarArxiu.Visible = false;
                     pBoxTituloEditarArxiu.Visible = false;
+                    btnEditarArxiu.Enabled = true;
+
 
                     btnAfegirFila.Visible = true;
                     btnEliminarFila.Visible = true;
@@ -226,95 +380,6 @@ namespace Dades_Alumnes_Joc_Pintar
                 {
                     MessageBox.Show(this, "Error al cargar el archivo: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }
-        }
-
-
-        private void btnSortir_Click_1(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void btnEditarArxiu_Click(object sender, EventArgs e)
-        {
-            lblNomArxiu.Visible = true;
-            txtBoxEditarNomArxiu.Visible = true;
-            pBoxTituloEditarArxiu.Visible = true;
-            btnConfirmarNomArxiu.Visible = true;
-            pBoxEditarArxiu.Visible = true;
-
-            txtBoxEditarNomArxiu.Text = "Canviar nom d'arxiu";
-            txtBoxEditarNomArxiu.ForeColor = Color.Gray; 
-             
-            txtBoxEditarNomArxiu.Enter += (s, ev) =>
-
-            {
-                if (txtBoxEditarNomArxiu.Text == "Canviar nom d'arxiu")
-                {
-                    txtBoxEditarNomArxiu.Text = "";
-                    txtBoxEditarNomArxiu.ForeColor = Color.Black; 
-                }
-            };
-
-            txtBoxEditarNomArxiu.Leave += (s, ev) =>
-            {
-                if (string.IsNullOrWhiteSpace(txtBoxEditarNomArxiu.Text))
-                {
-                    txtBoxEditarNomArxiu.Text = $"{nomArxiu}";
-                    txtBoxEditarNomArxiu.ForeColor = Color.Black; 
-                }
-            };
-
-            if (pBoxEditarArxiu.Visible &&
-                pBoxTituloEditarArxiu.Visible &&
-                lblNomArxiu.Visible &&
-                txtBoxEditarNomArxiu.Visible &&
-                btnConfirmarNomArxiu.Visible)
-            {
-                btnEditarArxiu.Enabled = false;
-            }
-        }
-
-        private void btnConfirmarNomArxiu_Click(object sender, EventArgs e)
-        {
-            
-           
-            cambiarTextLabelNomArxiu();
-        }
-
-        private void cambiarTextLabelNomArxiu()
-        {
-            if (!string.IsNullOrWhiteSpace(txtBoxEditarNomArxiu.Text))
-            {
-                nouNomArxiu = txtBoxEditarNomArxiu.Text;
-                lblNomArxiu.Text = nouNomArxiu;
-                lblNomArxiu.Visible = true;
-                lblNomArxiu.Invalidate();
-                lblNomArxiu.Refresh();
-
-                try
-                {
-                    nouNomArxiu = txtBoxEditarNomArxiu.Text.Trim();
-                    string newFilePath = Path.Combine(Path.GetDirectoryName(filePath), $"{nouNomArxiu}.json");
-
-                    if (File.Exists(newFilePath))
-                    {
-                        MessageBox.Show(this, "Ja existeix un arxiu amb aquest nom.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-
-                    File.Move(filePath, newFilePath);
-                    filePath = newFilePath;
-                    lblNomArxiu.Text = nouNomArxiu;
-                    MessageBox.Show(this, "Nom de l'arxiu canviat correctament.", "Informació", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch { 
-                
-                }
-            }
-            else
-            {
-                MessageBox.Show("El nombre del archivo no puede estar vacío.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }

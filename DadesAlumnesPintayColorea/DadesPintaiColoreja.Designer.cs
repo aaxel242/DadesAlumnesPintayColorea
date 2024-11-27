@@ -33,10 +33,10 @@ namespace Dades_Alumnes_Joc_Pintar
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelJSON = new System.Windows.Forms.DataGridView();
             this.lblDadesAlumnes = new System.Windows.Forms.Label();
             this.btnObrirArxiu = new System.Windows.Forms.Button();
@@ -53,6 +53,7 @@ namespace Dades_Alumnes_Joc_Pintar
             this.txtBoxEditarNomArxiu = new System.Windows.Forms.TextBox();
             this.pBoxTituloEditarArxiu = new System.Windows.Forms.PictureBox();
             this.btnConfirmarNomArxiu = new System.Windows.Forms.Button();
+            this.btnEliminarArxiu = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.panelJSON)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBoxDadesAlumnes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -68,41 +69,41 @@ namespace Dades_Alumnes_Joc_Pintar
             this.panelJSON.AllowUserToDeleteRows = false;
             this.panelJSON.BackgroundColor = System.Drawing.SystemColors.Info;
             this.panelJSON.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightCoral;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.panelJSON.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.LightCoral;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.panelJSON.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.panelJSON.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.panelJSON.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Tahoma", 11.25F);
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.panelJSON.DefaultCellStyle = dataGridViewCellStyle10;
             this.panelJSON.GridColor = System.Drawing.SystemColors.Desktop;
             this.panelJSON.Location = new System.Drawing.Point(54, 135);
             this.panelJSON.Margin = new System.Windows.Forms.Padding(2);
             this.panelJSON.Name = "panelJSON";
             this.panelJSON.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.panelJSON.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Tahoma", 11.25F);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.panelJSON.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.panelJSON.RowHeadersWidth = 51;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            this.panelJSON.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Tahoma", 11.25F);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black;
+            this.panelJSON.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.panelJSON.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.SystemColors.Info;
             this.panelJSON.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Malgun Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panelJSON.Size = new System.Drawing.Size(1021, 400);
@@ -229,6 +230,7 @@ namespace Dades_Alumnes_Joc_Pintar
             this.pBoxAfegir.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pBoxAfegir.TabIndex = 11;
             this.pBoxAfegir.TabStop = false;
+            this.pBoxAfegir.Click += new System.EventHandler(this.pBoxAfegir_Click);
             // 
             // btnEditarArxiu
             // 
@@ -310,6 +312,22 @@ namespace Dades_Alumnes_Joc_Pintar
             this.btnConfirmarNomArxiu.Visible = false;
             this.btnConfirmarNomArxiu.Click += new System.EventHandler(this.btnConfirmarNomArxiu_Click);
             // 
+            // btnEliminarArxiu
+            // 
+            this.btnEliminarArxiu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnEliminarArxiu.FlatAppearance.BorderSize = 2;
+            this.btnEliminarArxiu.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnEliminarArxiu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEliminarArxiu.Location = new System.Drawing.Point(1326, 866);
+            this.btnEliminarArxiu.Margin = new System.Windows.Forms.Padding(2);
+            this.btnEliminarArxiu.Name = "btnEliminarArxiu";
+            this.btnEliminarArxiu.Size = new System.Drawing.Size(125, 40);
+            this.btnEliminarArxiu.TabIndex = 18;
+            this.btnEliminarArxiu.Text = "Esborrar Arxiu";
+            this.btnEliminarArxiu.UseVisualStyleBackColor = false;
+            this.btnEliminarArxiu.Visible = false;
+            this.btnEliminarArxiu.Click += new System.EventHandler(this.btnEliminarArxiu_Click);
+            // 
             // formJocPintar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -317,6 +335,7 @@ namespace Dades_Alumnes_Joc_Pintar
             this.BackgroundImage = global::DadesAlumnesPintayColorea.Properties.Resources.imgPaisajeFondo;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1924, 1046);
+            this.Controls.Add(this.btnEliminarArxiu);
             this.Controls.Add(this.btnConfirmarNomArxiu);
             this.Controls.Add(this.pBoxTituloEditarArxiu);
             this.Controls.Add(this.txtBoxEditarNomArxiu);
@@ -374,5 +393,6 @@ namespace Dades_Alumnes_Joc_Pintar
         private TextBox txtBoxEditarNomArxiu;
         private PictureBox pBoxTituloEditarArxiu;
         private Button btnConfirmarNomArxiu;
+        private Button btnEliminarArxiu;
     }
 }
