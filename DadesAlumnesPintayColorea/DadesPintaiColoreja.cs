@@ -20,14 +20,48 @@ namespace Dades_Alumnes_Joc_Pintar
         {
             InitializeComponent();
         }
-
         private void btnAfegirFila_Click_1(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(filePath))
-            {
-                MessageBox.Show(this, "Siusplau, obre un arxiu.", "Missatge", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            afegirFila();
+        }
+        private void btnEliminarFila_Click_1(object sender, EventArgs e)
+        {
+            EliminarFila();
+        }
+        private void btnGuardar_Click_1(object sender, EventArgs e)
+        {
+            guardarArxiu();
+        }
+        private void btnObrirArxiu_Click_1(object sender, EventArgs e)
+        {
+            obrirArxiu();
+        }
+        private void pBoxAfegir_Click(object sender, EventArgs e)
+        {
+            obrirArxiu();
+        }
+        private void btnSortir_Click_1(object sender, EventArgs e)
+        {
+            Close();
+        }
+        private void btnEditarArxiu_Click(object sender, EventArgs e)
+        {
+            EditarArxiu();
+        }
+        private void btnConfirmarNomArxiu_Click(object sender, EventArgs e)
+        {
+            cambiarNomArxiu();
+        }
+        private void btnEliminarArxiu_Click(object sender, EventArgs e)
+        {
+            EliminarArxiu();
+        }
+       
+
+        // Metodos principales
+        private void afegirFila()
+        {
+            ValidarArxiuCargat();
 
             try
             {
@@ -40,15 +74,8 @@ namespace Dades_Alumnes_Joc_Pintar
                 MessageBox.Show(this, "Error al afegir una fila: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private void btnEliminarFila_Click_1(object sender, EventArgs e)
+        private void EliminarFila()
         {
-            if (panelJSON.DataSource == null)
-            {
-                MessageBox.Show(this, "Siusplau, obre un arxiu.", "Missatge", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
             if (panelJSON.SelectedRows.Count > 0)
             {
                 try
@@ -76,25 +103,16 @@ namespace Dades_Alumnes_Joc_Pintar
                 MessageBox.Show(this, "Selecciona una fila.", "Missatge", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-
-        private void btnGuardar_Click_1(object sender, EventArgs e)
+        private void guardarArxiu()
         {
-            if (string.IsNullOrEmpty(filePath))
-            {
-                MessageBox.Show(this, "Siusplau, obre un arxiu.", "Missatge", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
+            ValidarArxiuCargat();
             try
             {
                 DataTable json = (DataTable)panelJSON.DataSource;
-
                 JArray jsonArray = new JArray();
-
                 foreach (DataRow fila in json.Rows)
                 {
                     JObject obj = new JObject();
-
                     foreach (DataColumn columna in json.Columns)
                     {
                         obj[columna.ColumnName] = JToken.FromObject(fila[columna]);
@@ -103,9 +121,7 @@ namespace Dades_Alumnes_Joc_Pintar
                 }
 
                 string archivoAJSON = jsonArray.ToString();
-
                 File.WriteAllText(filePath, archivoAJSON);
-
                 MessageBox.Show(this, "L'arxiu s'ha guardat correctament.", "Informació", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
@@ -113,67 +129,13 @@ namespace Dades_Alumnes_Joc_Pintar
                 MessageBox.Show(this, "Error al guardar l'arxiu: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private void btnObrirArxiu_Click_1(object sender, EventArgs e)
+        private void EditarArxiu()
         {
-            obrirArxiu();
+            MostrarElementsEditarArxiu();
+            ConfiguracioTextBox();
+            BloquejarBotoEditarArxiu();
         }
-
-
-        private void btnSortir_Click_1(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void btnEditarArxiu_Click(object sender, EventArgs e)
-        {
-            lblNomArxiu.Visible = true;
-            txtBoxEditarNomArxiu.Visible = true;
-            pBoxTituloEditarArxiu.Visible = true;
-            btnConfirmarNomArxiu.Visible = true;
-            btnEliminarArxiu.Visible = true;
-            pBoxEditarArxiu.Visible = true;
-
-            txtBoxEditarNomArxiu.Text = "Canviar nom d'arxiu";
-            txtBoxEditarNomArxiu.ForeColor = Color.Gray; 
-             
-            txtBoxEditarNomArxiu.Enter += (s, ev) =>
-
-            {
-                if (txtBoxEditarNomArxiu.Text == "Canviar nom d'arxiu")
-                {
-                    txtBoxEditarNomArxiu.Text = "";
-                    txtBoxEditarNomArxiu.ForeColor = Color.Black; 
-                }
-            };
-
-            txtBoxEditarNomArxiu.Leave += (s, ev) =>
-            {
-                if (string.IsNullOrWhiteSpace(txtBoxEditarNomArxiu.Text))
-                {
-                    txtBoxEditarNomArxiu.Text = $"{nomArxiu}";
-                    txtBoxEditarNomArxiu.ForeColor = Color.Black; 
-                }
-            };
-
-            if (pBoxEditarArxiu.Visible &&
-                pBoxTituloEditarArxiu.Visible &&
-                lblNomArxiu.Visible &&
-                txtBoxEditarNomArxiu.Visible &&
-                btnConfirmarNomArxiu.Visible)
-            {
-                btnEditarArxiu.Enabled = false;
-            }
-        }
-
-        private void btnConfirmarNomArxiu_Click(object sender, EventArgs e)
-        {
-            
-           
-            cambiarTextLabelNomArxiu();
-        }
-
-        private void cambiarTextLabelNomArxiu()
+        private void cambiarNomArxiu()
         {
             if (!string.IsNullOrWhiteSpace(txtBoxEditarNomArxiu.Text))
             {
@@ -199,23 +161,18 @@ namespace Dades_Alumnes_Joc_Pintar
                     lblNomArxiu.Text = nouNomArxiu;
                     MessageBox.Show(this, "Nom de l'arxiu canviat correctament.", "Informació", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                catch { 
-                
+                catch
+                {
                 }
             }
             else
             {
-                MessageBox.Show("El nombre del archivo no puede estar vacío.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("El nom del arxiu no pot estar buit.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-
-        private void btnEliminarArxiu_Click(object sender, EventArgs e)
+        private void EliminarArxiu()
         {
-            if (string.IsNullOrEmpty(filePath))
-            {
-                MessageBox.Show(this, "No hi ha cap arxiu per eliminar.", "Missatge", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            ValidarArxiuCargat();
 
             DialogResult confirmResult = MessageBox.Show(
                 "Estàs segur que vols eliminar aquest arxiu?",
@@ -229,28 +186,16 @@ namespace Dades_Alumnes_Joc_Pintar
                 try
                 {
                     File.Delete(filePath);
-                    filePath = null; // Reseteamos el path para indicar que no hay archivo seleccionado.
+                    filePath = null;
 
-                    // Opcional: Limpia el DataGridView y ajusta los controles.
                     if (panelJSON.DataSource != null)
                     {
                         ((DataTable)panelJSON.DataSource).Clear();
                         panelJSON.DataSource = null;
                     }
 
-                    txtBoxEditarNomArxiu.Text = " ";
-                    lblNomArxiu.Text = " ";
-                    pBoxEditarArxiu.Visible = false;
-                    lblNomArxiu.Visible = false;
-                    txtBoxEditarNomArxiu.Visible = false;
-                    btnEliminarArxiu.Visible = false;
-                    btnConfirmarNomArxiu.Visible = false;
-                    pBoxTituloEditarArxiu.Visible = false;
-                    btnEditarArxiu.Visible = false;
-                    btnAfegirFila.Visible = false;
-                    btnEliminarFila.Visible = false;
-                    btnGuardar.Visible = false;
-
+                    OcultarElementsEditarArxiu();
+                    
                     MessageBox.Show(this, "L'arxiu s'ha eliminat correctament.", "Informació", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
@@ -259,23 +204,87 @@ namespace Dades_Alumnes_Joc_Pintar
                 }
             }
         }
-
-        private void pBoxAfegir_Click(object sender, EventArgs e)
-        {
-            obrirArxiu();
-        }
-
         private void obrirArxiu()
         {
-            pBoxAfegir.Enabled = true;
-            pBoxAfegir.Visible = true;
+            string nuevoFilePath;
+            if (!MostrarExploradorDArxius(out nuevoFilePath)) return;
 
-            if (panelJSON.DataSource != null)
+            if (!ProcessarNouArxiu(nuevoFilePath, out DataTable dataTable)) return;
+
+            LimpiarDatosAnteriores();
+            CargarNuevoArchivo(nuevoFilePath, dataTable);
+            ConfigurarControlesDespuesDeCargar();
+        }
+
+        //Submetodos
+        private bool ValidarArxiuCargat()
+        {
+            if (string.IsNullOrEmpty(filePath))
             {
-                ((DataTable)panelJSON.DataSource).Clear();
-                panelJSON.DataSource = null;
+                MessageBox.Show(this, "Siusplau, obre un arxiu.", "Missatge", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
             }
+            return true;
+        }
+        private void MostrarElementsEditarArxiu()
+        {
+            lblNomArxiu.Visible = true;
+            txtBoxEditarNomArxiu.Visible = true;
+            pBoxTituloEditarArxiu.Visible = true;
+            btnConfirmarNomArxiu.Visible = true;
+            btnEliminarArxiu.Visible = true;
+            pBoxEditarArxiu.Visible = true;
+        }
+        private void BloquejarBotoEditarArxiu()
+        {
+            if (pBoxEditarArxiu.Visible &&
+               pBoxTituloEditarArxiu.Visible &&
+               lblNomArxiu.Visible &&
+               txtBoxEditarNomArxiu.Visible &&
+               btnConfirmarNomArxiu.Visible)
+            {
+                btnEditarArxiu.Enabled = false;
+            }
+        }
+        private void ConfiguracioTextBox()
+        {
+            txtBoxEditarNomArxiu.Text = "Canviar nom d'arxiu";
+            txtBoxEditarNomArxiu.ForeColor = Color.Gray;
+            txtBoxEditarNomArxiu.Enter += (s, ev) =>
+            {
+                if (txtBoxEditarNomArxiu.Text == "Canviar nom d'arxiu")
+                {
+                    txtBoxEditarNomArxiu.Text = "";
+                    txtBoxEditarNomArxiu.ForeColor = Color.Black;
+                }
+            };
 
+            txtBoxEditarNomArxiu.Leave += (s, ev) =>
+            {
+                if (string.IsNullOrWhiteSpace(txtBoxEditarNomArxiu.Text))
+                {
+                    txtBoxEditarNomArxiu.Text = $"{nomArxiu}";
+                    txtBoxEditarNomArxiu.ForeColor = Color.Black;
+                }
+            };
+        }
+        private void OcultarElementsEditarArxiu()
+        {
+            txtBoxEditarNomArxiu.Text = " ";
+            lblNomArxiu.Text = " ";
+            pBoxEditarArxiu.Visible = false;
+            lblNomArxiu.Visible = false;
+            txtBoxEditarNomArxiu.Visible = false;
+            btnEliminarArxiu.Visible = false;
+            btnConfirmarNomArxiu.Visible = false;
+            pBoxTituloEditarArxiu.Visible = false;
+            btnEditarArxiu.Visible = false;
+            btnAfegirFila.Visible = false;
+            btnEliminarFila.Visible = false;
+            btnGuardar.Visible = false;
+        }
+        private bool MostrarExploradorDArxius(out string nuevoFilePath)
+        {
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
                 Filter = "Archivos JSON (*.json)|*.json",
@@ -284,103 +293,112 @@ namespace Dades_Alumnes_Joc_Pintar
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                filePath = openFileDialog.FileName;
-                nomArxiu = Path.GetFileNameWithoutExtension(filePath);
+                nuevoFilePath = openFileDialog.FileName;
+                return true;
+            }
 
-                try
+            nuevoFilePath = null;
+            return false;
+        }
+        private bool ProcessarNouArxiu(string filePath, out DataTable dataTable)
+        {
+            try
+            {
+                string fileJson = File.ReadAllText(filePath);
+                JArray jsonArray = JArray.Parse(fileJson);
+                dataTable = CrearTablaDesdeJSON(jsonArray);
+                return true;
+            }
+            catch (JsonReaderException jsonEx)
+            {
+                MessageBox.Show(this, "Error al parsear el archivo JSON: " + jsonEx.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (IOException ioEx)
+            {
+                MessageBox.Show(this, "Error de entrada/salida: " + ioEx.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, "Error al cargar el archivo: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            dataTable = null;
+            return false;
+        }
+        private DataTable CrearTablaDesdeJSON(JArray jsonArray)
+        {
+            DataTable dataTable = new DataTable();
+
+            foreach (JObject obj in jsonArray)
+            {
+                foreach (JProperty property in obj.Properties())
                 {
-                    string fileJson = File.ReadAllText(filePath);
-                    JArray jsonArray = JArray.Parse(fileJson);
-                    DataTable dataTable = new DataTable();
-
-                    foreach (JObject obj in jsonArray)
+                    if (!dataTable.Columns.Contains(property.Name))
                     {
-                        foreach (JProperty property in obj.Properties())
-                        {
-                            if (!dataTable.Columns.Contains(property.Name))
-                            {
-                                dataTable.Columns.Add(property.Name);
-                            }
-                        }
+                        dataTable.Columns.Add(property.Name);
                     }
-
-                    foreach (JObject obj in jsonArray)
-                    {
-                        DataRow row = dataTable.NewRow();
-                        foreach (JProperty property in obj.Properties())
-                        {
-                            row[property.Name] = property.Value;
-                        }
-                        dataTable.Rows.Add(row);
-                    }
-
-                    panelJSON.DataSource = dataTable;
-
-                    // Configuraciones de estilo
-                    panelJSON.DefaultCellStyle.Font = new Font("Tahoma", 10, FontStyle.Regular);
-                    panelJSON.DefaultCellStyle.ForeColor = Color.Black;
-
-                    panelJSON.ColumnHeadersDefaultCellStyle.BackColor = Color.SeaGreen;
-                    panelJSON.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-                    panelJSON.ColumnHeadersDefaultCellStyle.Font = new Font("Tahoma", 10, FontStyle.Bold);
-                    panelJSON.EnableHeadersVisualStyles = false;
-
-                    panelJSON.RowHeadersDefaultCellStyle.BackColor = Color.SeaGreen;
-                    panelJSON.RowHeadersDefaultCellStyle.ForeColor = Color.Black;
-                    panelJSON.RowHeadersDefaultCellStyle.Font = new Font("Tahoma", 10, FontStyle.Italic);
-
-                    // Ajustar el tamaño de las columnas y filas
-                    panelJSON.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                    panelJSON.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-
-                    // Opcional: Ajustar automáticamente las celdas cuando el contenido cambie
-                    panelJSON.AutoResizeColumns();
-                    panelJSON.AutoResizeRows();
-
-                    // Configuración de visibilidad de controles
-
-
-                    pBoxAfegir.Enabled = false;
-                    pBoxAfegir.Visible = false;
-                    lblNomArxiu.Visible = false;
-                    pBoxEditarArxiu.Visible = false;
-                    txtBoxEditarNomArxiu.Visible = false;
-                    btnConfirmarNomArxiu.Visible = false;
-                    btnEliminarArxiu.Visible = false;
-                    pBoxTituloEditarArxiu.Visible = false;
-                    btnEditarArxiu.Enabled = true;
-
-
-                    btnAfegirFila.Visible = true;
-                    btnEliminarFila.Visible = true;
-                    btnGuardar.Visible = true;
-                    btnEditarArxiu.Visible = true;
-
-                    if (!string.IsNullOrEmpty(nomArxiu))
-                    {
-                        lblNomArxiu.Text = $"{nomArxiu}";
-                        lblNomArxiu.Font = new Font("Tahoma", 18, FontStyle.Regular);
-                        lblNomArxiu.ForeColor = Color.Black;
-                        lblNomArxiu.Visible = false;
-                    }
-                    else
-                    {
-                        MessageBox.Show("El nombre del archivo no se pudo obtener.");
-                    }
-                }
-                catch (JsonReaderException jsonEx)
-                {
-                    MessageBox.Show(this, "Error al parsear el archivo JSON: " + jsonEx.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                catch (IOException ioEx)
-                {
-                    MessageBox.Show(this, "Error de entrada/salida: " + ioEx.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(this, "Error al cargar el archivo: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+
+            foreach (JObject obj in jsonArray)
+            {
+                DataRow row = dataTable.NewRow();
+                foreach (JProperty property in obj.Properties())
+                {
+                    row[property.Name] = property.Value;
+                }
+                dataTable.Rows.Add(row);
+            }
+
+            return dataTable;
+        }
+        private void LimpiarDatosAnteriores()
+        {
+            if (panelJSON.DataSource != null)
+            {
+                ((DataTable)panelJSON.DataSource).Clear();
+                panelJSON.DataSource = null;
+            }
+        }
+        private void CargarNuevoArchivo(string nuevoFilePath, DataTable dataTable)
+        {
+            filePath = nuevoFilePath;
+            nomArxiu = Path.GetFileNameWithoutExtension(nuevoFilePath);
+            panelJSON.DataSource = dataTable;
+        }
+        private void ConfigurarControlesDespuesDeCargar()
+        {
+            // Configuraciones visuales del DataGridView
+            panelJSON.DefaultCellStyle.Font = new Font("Tahoma", 10, FontStyle.Regular);
+            panelJSON.DefaultCellStyle.ForeColor = Color.Black;
+
+            panelJSON.ColumnHeadersDefaultCellStyle.BackColor = Color.SeaGreen;
+            panelJSON.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            panelJSON.ColumnHeadersDefaultCellStyle.Font = new Font("Tahoma", 10, FontStyle.Bold);
+            panelJSON.EnableHeadersVisualStyles = false;
+
+            panelJSON.RowHeadersDefaultCellStyle.BackColor = Color.SeaGreen;
+            panelJSON.RowHeadersDefaultCellStyle.ForeColor = Color.Black;
+            panelJSON.RowHeadersDefaultCellStyle.Font = new Font("Tahoma", 10, FontStyle.Italic);
+
+            panelJSON.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            panelJSON.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+
+            panelJSON.AutoResizeColumns();
+            panelJSON.AutoResizeRows();
+
+            // Configuración de controles
+            btnEditarArxiu.Visible = true;
+            btnAfegirFila.Visible = true;
+            btnEliminarFila.Visible = true;
+            btnGuardar.Visible = true;
+
+            pBoxAfegir.Visible = false;
+            lblNomArxiu.Visible = false;
+
+            lblNomArxiu.Text = $"{nomArxiu}";
+            lblNomArxiu.Font = new Font("Tahoma", 18, FontStyle.Regular);
+            lblNomArxiu.ForeColor = Color.Black;
         }
     }
 }
