@@ -16,6 +16,7 @@ namespace Dades_Alumnes_Joc_Pintar
         private string nomArxiu;
         private string nouNomArxiu;
 
+        //Metodos Click Eventos
         public formJocPintar()
         {
             InitializeComponent();
@@ -56,7 +57,6 @@ namespace Dades_Alumnes_Joc_Pintar
         {
             EliminarArxiu();
         }
-       
 
         // Metodos principales
         private void afegirFila()
@@ -161,9 +161,11 @@ namespace Dades_Alumnes_Joc_Pintar
                     lblNomArxiu.Text = nouNomArxiu;
                     MessageBox.Show(this, "Nom de l'arxiu canviat correctament.", "Informació", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                catch
+                catch (Exception ex)
                 {
+                    MessageBox.Show("Error al cambiar el nom de l'arxiu " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+
             }
             else
             {
@@ -302,11 +304,13 @@ namespace Dades_Alumnes_Joc_Pintar
         }
         private bool ProcessarNouArxiu(string filePath, out DataTable dataTable)
         {
+            dataTable = null;
+
             try
             {
                 string fileJson = File.ReadAllText(filePath);
                 JArray jsonArray = JArray.Parse(fileJson);
-                dataTable = CrearTablaDesdeJSON(jsonArray);
+                dataTable = CrearTablaDesdeJSON(jsonArray);  
                 return true;
             }
             catch (JsonReaderException jsonEx)
@@ -322,7 +326,6 @@ namespace Dades_Alumnes_Joc_Pintar
                 MessageBox.Show(this, "Error al cargar el archivo: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            dataTable = null;
             return false;
         }
         private DataTable CrearTablaDesdeJSON(JArray jsonArray)
@@ -368,7 +371,7 @@ namespace Dades_Alumnes_Joc_Pintar
         }
         private void ConfigurarControlesDespuesDeCargar()
         {
-            // Configuraciones visuales del DataGridView
+            // Configuracions visuals del DataGridView
             panelJSON.DefaultCellStyle.Font = new Font("Tahoma", 10, FontStyle.Regular);
             panelJSON.DefaultCellStyle.ForeColor = Color.Black;
 
@@ -387,15 +390,22 @@ namespace Dades_Alumnes_Joc_Pintar
             panelJSON.AutoResizeColumns();
             panelJSON.AutoResizeRows();
 
-            // Configuración de controles
+            //Configuració elements visibles
             btnEditarArxiu.Visible = true;
             btnAfegirFila.Visible = true;
             btnEliminarFila.Visible = true;
             btnGuardar.Visible = true;
-
             pBoxAfegir.Visible = false;
-            lblNomArxiu.Visible = false;
 
+            pBoxEditarArxiu.Visible = false;
+            lblNomArxiu.Visible = false;
+            txtBoxEditarNomArxiu.Visible = false;
+            btnEliminarArxiu.Visible = false;
+            btnConfirmarNomArxiu.Visible = false;
+            pBoxTituloEditarArxiu.Visible = false;
+            btnEditarArxiu.Enabled = true;
+
+            //Configura nom del label
             lblNomArxiu.Text = $"{nomArxiu}";
             lblNomArxiu.Font = new Font("Tahoma", 18, FontStyle.Regular);
             lblNomArxiu.ForeColor = Color.Black;
