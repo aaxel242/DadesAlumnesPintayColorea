@@ -365,9 +365,9 @@ namespace Dades_Alumnes_Joc_Pintar
         }
         private void CargarNuevoArchivo(string nuevoFilePath, DataTable dataTable)
         {
-            filePath = nuevoFilePath;
-            nomArxiu = Path.GetFileNameWithoutExtension(nuevoFilePath);
-            panelJSON.DataSource = dataTable;
+            filePath = nuevoFilePath; // Aquí se actualiza la ruta correctamente
+            nomArxiu = Path.GetFileNameWithoutExtension(nuevoFilePath); // Actualiza el nombre del archivo
+            panelJSON.DataSource = dataTable; // Asignar datos al DataGridView
         }
         private void ConfigurarControlesDespuesDeCargar()
         {
@@ -410,11 +410,28 @@ namespace Dades_Alumnes_Joc_Pintar
             lblNomArxiu.Font = new Font("Tahoma", 18, FontStyle.Regular);
             lblNomArxiu.ForeColor = Color.Black;
         }
-
         private void btnObrirExplorador_Click(object sender, EventArgs e)
         {
             Form1 formulariExplorador = new Form1();
             formulariExplorador.ShowDialog();
+        }
+        public void LoadJsonToDataGridView(string jsonFilePath)
+        {
+            try
+            {
+                string jsonContent = File.ReadAllText(jsonFilePath);
+                var dataTable = JsonConvert.DeserializeObject<DataTable>(jsonContent); // Usando Json.NET para deserializar
+                panelJSON.DataSource = dataTable; // Asignar al DataGridView
+
+                // Actualizar filePath al abrir el archivo
+                filePath = jsonFilePath; // Asegúrate de actualizar filePath aquí
+                nomArxiu = Path.GetFileNameWithoutExtension(jsonFilePath);
+                ConfigurarControlesDespuesDeCargar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar el archivo JSON: " + ex.Message);
+            }
         }
     }
 }

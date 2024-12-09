@@ -208,20 +208,26 @@ namespace Dades_Alumnes_Joc_Pintar
 
         private void listViewArchivos_DoubleClick(object sender, EventArgs e)
         {
-
             if (listViewArchivos.SelectedItems.Count > 0)
             {
                 var selectedItem = listViewArchivos.SelectedItems[0];
-                string path = selectedItem.Tag.ToString();
+                string path = selectedItem.Tag.ToString(); // Ruta del archivo o carpeta
 
                 if (Directory.Exists(path))
                 {
-                    // Si es una carpeta, cargar su contenido en el mismo ListView
+                    // Si es una carpeta, cargar su contenido en el ListView
                     LoadFolder(path);
                 }
-                else if (File.Exists(path))
+                else if (File.Exists(path) && Path.GetExtension(path).ToLower() == ".json")
                 {
-                    // Si es un archivo, abrirlo con el programa predeterminado
+                    // Si es un archivo JSON, cargarlo en Form2
+                    formJocPintar form2 = new formJocPintar();
+                    form2.LoadJsonToDataGridView(path); // Pasamos la ruta del archivo JSON
+                    form2.Show(); // Mostrar Form2
+                }
+                else
+                {
+                    // Si es un archivo que no es JSON, abrirlo con el programa predeterminado
                     try
                     {
                         System.Diagnostics.Process.Start(path);
@@ -232,8 +238,8 @@ namespace Dades_Alumnes_Joc_Pintar
                     }
                 }
             }
-
         }
+
 
 
 
@@ -467,6 +473,8 @@ namespace Dades_Alumnes_Joc_Pintar
                 MessageBox.Show("La ruta actual no es válida.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
 
     }
 }
