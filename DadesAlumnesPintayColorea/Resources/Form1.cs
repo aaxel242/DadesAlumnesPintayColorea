@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WindowsFormsApp1
+namespace Dades_Alumnes_Joc_Pintar
 {
     public partial class Form1 : Form
     {
@@ -322,7 +322,7 @@ namespace WindowsFormsApp1
                 MessageBox.Show($"Error al crear el archivo: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-       
+
 
         private void buttonEliminarArchivo_Click(object sender, EventArgs e)
         {

@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApp1
+﻿namespace Dades_Alumnes_Joc_Pintar
 {
     partial class Form1
     {
@@ -92,7 +92,7 @@
             // 
             // buttonCrearCarpeta
             // 
-            this.buttonCrearCarpeta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.buttonCrearCarpeta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.buttonCrearCarpeta.Location = new System.Drawing.Point(263, 76);
             this.buttonCrearCarpeta.Name = "buttonCrearCarpeta";
             this.buttonCrearCarpeta.Size = new System.Drawing.Size(121, 23);
@@ -103,7 +103,7 @@
             // 
             // buttonCrearArchivo
             // 
-            this.buttonCrearArchivo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.buttonCrearArchivo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.buttonCrearArchivo.Location = new System.Drawing.Point(263, 137);
             this.buttonCrearArchivo.Name = "buttonCrearArchivo";
             this.buttonCrearArchivo.Size = new System.Drawing.Size(121, 23);
@@ -114,7 +114,7 @@
             // 
             // buttonEliminarArchivo
             // 
-            this.buttonEliminarArchivo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.buttonEliminarArchivo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.buttonEliminarArchivo.Location = new System.Drawing.Point(263, 196);
             this.buttonEliminarArchivo.Name = "buttonEliminarArchivo";
             this.buttonEliminarArchivo.Size = new System.Drawing.Size(121, 23);
@@ -137,7 +137,7 @@
             // 
             // buttonCargar
             // 
-            this.buttonCargar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.buttonCargar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.buttonCargar.Location = new System.Drawing.Point(263, 22);
             this.buttonCargar.Name = "buttonCargar";
             this.buttonCargar.Size = new System.Drawing.Size(121, 23);
@@ -148,7 +148,7 @@
             // 
             // buttonCopiarNombre
             // 
-            this.buttonCopiarNombre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.buttonCopiarNombre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.buttonCopiarNombre.Location = new System.Drawing.Point(263, 322);
             this.buttonCopiarNombre.Name = "buttonCopiarNombre";
             this.buttonCopiarNombre.Size = new System.Drawing.Size(121, 23);
@@ -237,7 +237,7 @@
             // 
             // buttonCambiarNombre
             // 
-            this.buttonCambiarNombre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.buttonCambiarNombre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.buttonCambiarNombre.Location = new System.Drawing.Point(263, 258);
             this.buttonCambiarNombre.Name = "buttonCambiarNombre";
             this.buttonCambiarNombre.Size = new System.Drawing.Size(121, 23);

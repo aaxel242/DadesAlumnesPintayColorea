@@ -410,5 +410,11 @@ namespace Dades_Alumnes_Joc_Pintar
             lblNomArxiu.Font = new Font("Tahoma", 18, FontStyle.Regular);
             lblNomArxiu.ForeColor = Color.Black;
         }
+
+        private void btnObrirExplorador_Click(object sender, EventArgs e)
+        {
+            Form1 formulariExplorador = new Form1();
+            formulariExplorador.ShowDialog();
+        }
     }
 }
