@@ -11,11 +11,12 @@ using System.Windows.Forms;
 
 namespace Dades_Alumnes_Joc_Pintar
 {
-    public partial class Form1 : Form
+    public partial class formExplorador : Form
     {
         private ImageList imageList;
+        private formJocPintar form2; // Agregar la declaración de form2
 
-        public Form1()
+        public formExplorador()
         {
             InitializeComponent();
 
@@ -29,7 +30,7 @@ namespace Dades_Alumnes_Joc_Pintar
                 ColorDepth = ColorDepth.Depth32Bit
             };
             listViewArchivos.LargeImageList = imageList;
-            string ruta = @"C:\";
+            string ruta = @"C:\Users";
             LoadFolder(ruta);
         }
 
@@ -220,10 +221,15 @@ namespace Dades_Alumnes_Joc_Pintar
                 }
                 else if (File.Exists(path) && Path.GetExtension(path).ToLower() == ".json")
                 {
-                    // Si es un archivo JSON, cargarlo en Form2
-                    formJocPintar form2 = new formJocPintar();
+                    // Si es un archivo JSON, cargarlo en el mismo Form2 ya abierto (si existe)
+                    if (form2 == null || form2.IsDisposed)
+                    {
+                        form2 = new formJocPintar(); // Crear una nueva instancia si no existe
+                    }
                     form2.LoadJsonToDataGridView(path); // Pasamos la ruta del archivo JSON
-                    form2.Show(); // Mostrar Form2
+
+                    // Cerrar Form1 una vez que el archivo JSON se haya cargado en Form2
+                    this.Close();
                 }
                 else
                 {
@@ -442,7 +448,7 @@ namespace Dades_Alumnes_Joc_Pintar
             if (Directory.Exists(currentPath))
             {
                 // Obtener la unidad y la ruta completa
-                string root = Path.GetPathRoot(currentPath); // Obtener la unidad (ej. C:\)
+                string root = Path.GetPathRoot(currentPath); // Obtener la unidad (ej. C:\Users)
                 string relativePath = currentPath.Substring(root.Length); // Obtener el resto de la ruta
 
                 // Dividir la ruta relativa en partes

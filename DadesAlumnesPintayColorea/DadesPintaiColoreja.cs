@@ -2,6 +2,7 @@ using System;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -221,11 +222,20 @@ namespace Dades_Alumnes_Joc_Pintar
         //Submetodos
         private bool ValidarArxiuCargat()
         {
+            // Verificar si el archivo está cargado
             if (string.IsNullOrEmpty(filePath))
             {
                 MessageBox.Show(this, "Siusplau, obre un arxiu.", "Missatge", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
+
+            // Verificar si el DataTable asociado a DataGridView tiene datos
+            if (panelJSON.DataSource == null || ((DataTable)panelJSON.DataSource).Rows.Count == 0)
+            {
+                MessageBox.Show(this, "No hi ha dades carregades. Si us plau, obriu un arxiu.", "Missatge", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
             return true;
         }
         private void MostrarElementsEditarArxiu()
@@ -252,6 +262,7 @@ namespace Dades_Alumnes_Joc_Pintar
         {
             txtBoxEditarNomArxiu.Text = "Canviar nom d'arxiu";
             txtBoxEditarNomArxiu.ForeColor = Color.Gray;
+
             txtBoxEditarNomArxiu.Enter += (s, ev) =>
             {
                 if (txtBoxEditarNomArxiu.Text == "Canviar nom d'arxiu")
@@ -267,6 +278,16 @@ namespace Dades_Alumnes_Joc_Pintar
                 {
                     txtBoxEditarNomArxiu.Text = $"{nomArxiu}";
                     txtBoxEditarNomArxiu.ForeColor = Color.Black;
+                }
+            };
+
+            // Capturar Enter y procesar el cambio
+            txtBoxEditarNomArxiu.KeyPress += (s, ev) =>
+            {
+                if (ev.KeyChar == (char)13) // Enter key
+                {
+                    ev.Handled = true; // Evitar el sonido de "ding" al presionar Enter
+                    cambiarNomArxiu();
                 }
             };
         }
@@ -412,26 +433,50 @@ namespace Dades_Alumnes_Joc_Pintar
         }
         private void btnObrirExplorador_Click(object sender, EventArgs e)
         {
-            Form1 formulariExplorador = new Form1();
+            formExplorador formulariExplorador = new formExplorador();
             formulariExplorador.ShowDialog();
         }
-        public void LoadJsonToDataGridView(string jsonFilePath)
+        public void LoadJsonToDataGridView(string filePath)
         {
             try
             {
-                string jsonContent = File.ReadAllText(jsonFilePath);
-                var dataTable = JsonConvert.DeserializeObject<DataTable>(jsonContent); // Usando Json.NET para deserializar
-                panelJSON.DataSource = dataTable; // Asignar al DataGridView
+                // Intentamos obtener la instancia existente de FormJocPintar
+                formJocPintar formJocPintarInstance = Application.OpenForms.OfType<formJocPintar>().FirstOrDefault();
 
-                // Actualizar filePath al abrir el archivo
-                filePath = jsonFilePath; // Asegúrate de actualizar filePath aquí
-                nomArxiu = Path.GetFileNameWithoutExtension(jsonFilePath);
-                ConfigurarControlesDespuesDeCargar();
+                if (formJocPintarInstance == null)
+                {
+                    // Si no hay ninguna instancia abierta, creamos una nueva instancia
+                    formJocPintarInstance = new formJocPintar();
+                    formJocPintarInstance.Show();  // Mostrar el formulario
+                }
+
+                // Cargar el archivo JSON y convertirlo en un DataTable
+                string jsonContent = File.ReadAllText(filePath); // Leer el contenido del archivo JSON
+
+                var data = JsonConvert.DeserializeObject<DataTable>(jsonContent);
+
+                if (data != null)
+                {
+                    // Asignar los datos al DataGridView dentro del formulario FormJocPintar
+                    formJocPintarInstance.panelJSON.DataSource = data;
+                    formJocPintarInstance.panelJSON.Visible = true; // Hacer visible el DataGridView
+                }
+                else
+                {
+                    MessageBox.Show("El archivo JSON no contiene datos válidos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+                // Llamar a ConfigurarControlesDespuesDeCargar() después de cargar los datos
+                formJocPintarInstance.ConfigurarControlesDespuesDeCargar();
+
+                // Cerrar el formulario actual (Form1)
+                this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar el archivo JSON: " + ex.Message);
+                MessageBox.Show($"Error al cargar el archivo JSON: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
     }
 }

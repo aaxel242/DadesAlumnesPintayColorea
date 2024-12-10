@@ -1,6 +1,6 @@
 ﻿namespace Dades_Alumnes_Joc_Pintar
 {
-    partial class Form1
+    partial class formExplorador
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -272,7 +272,7 @@
             this.labelArchivoSelecionado.TabIndex = 27;
             this.labelArchivoSelecionado.Text = "Ninguno";
             // 
-            // Form1
+            // formExplorador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -300,8 +300,8 @@
             this.Controls.Add(this.textBoxCrearCarpeta);
             this.Controls.Add(this.labelPath);
             this.Controls.Add(this.textBoxPath);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "formExplorador";
+            this.Text = "Explorador d\'Arxius";
             this.ResumeLayout(false);
             this.PerformLayout();
 
